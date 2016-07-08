@@ -30,7 +30,7 @@ def get_argparser(ArgumentParser=argparse.ArgumentParser):
 	                    default=True, action='store_false', dest='rename_font')
 	parser.add_argument('--source-font', help='source symbol font', metavar='font',
 	                    dest='source_font',
-	                    default='{0}/../fonts/powerline-symbols.sfd'.format(sys.path[0]),
+	                    default='{0}/powerline-symbols.sfd'.format(sys.path[0]),
 	                    type=argparse.FileType('rb'))
 	return parser
 
@@ -45,7 +45,7 @@ def patch_one_font(source_font, target_font, rename_font=True):
 
 	# Rename font
 	if rename_font:
-		# target_font.familyname += ' for Powerline'
+		target_font.familyname += ' for Powerline'
 		target_font.fullname += ' for Powerline'
 		fontname, style = FONT_NAME_RE.match(target_font.fontname).groups()
 		target_font.fontname = fontname + 'ForPowerline'
